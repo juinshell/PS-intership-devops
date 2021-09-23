@@ -6,23 +6,33 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
-	message "github.com/husterdjx/PS-intership-devops/code/grpc/proto"
+	pb "grpc/proto"
 )
 
-func handleSendMessage(ctx context.Context, req *message.MessageRequest) (*message.MessageResponse, error) {
-	log.Println("receive message:", req.GetSaySomething())
-	resp := &message.MessageResponse{}
-	resp.ResponseSomething = "roger that!"
-	return resp, nil
+
+const (
+	port = ":50051"
+)
+
+// server is used to implement helloworld.GreeterServer.
+type server struct {
+	pb.UnimplementedGreeterServer
+}
+
+// SayHello implements helloworld.GreeterServer
+func (s *server) Send(ctx context.Context, in *pb.MessageRequest) (*pb.MessageResponse, error) {
+	log.Printf("Received: %v", in.GetSaySomething())
+	return &pb.MessageResponse{ResponseSomething: "Hello " + in.GetSaySomething()}, nil
 }
 
 func main() {
-	_ , err := net.Listen("tcp","localhost:5000")
+	lis, err := net.Listen("tcp", port)
 	if err != nil {
-		log.Fatalln("cannot create a listener at the address")
+		log.Fatalf("failed to listen: %v", err)
 	}
-	srv := grpc.NewServer()
-	message.RegisterMessageSenderService(srv, &message.MessageSenderService{
-		Send: handleSendMessage,
-	})
+	s := grpc.NewServer()
+	pb.RegisterMessageSenderServer(s, &server{})
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
 }

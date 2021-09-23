@@ -1,16 +1,45 @@
 package main
 
 import (
+	"context"
 	"log"
 	"net"
+	"os"
+	"time"
+
+	pb "grpc/proto"
+
+	"google.golang.org/grpc"
 )
+const (
+	address     = "localhost:50051"
+	defaultName = "world"
+)
+
 func main() {
-	listener, err := net.Listen("tcp", ":5000")
+	// Set up a connection to the server.
+	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
+		log.Fatalf("did not connect: %v", err)
 	}
-	err = srv.Serve(listener)
+	defer conn.Close()
+	c := pb.NewMessageSenderClient(conn)
+
+	// Contact the server and print out its response.
+	name := defaultName
+	if len(os.Args) > 1 {
+		name = os.Args[1]
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	r, err := c.Send(ctx, &pb.MessageRequest{saySomething: name})
 	if err != nil {
-		log.Fatalf("failed to serve: %v", err)
+		log.Fatalf("could not greet: %v", err)
 	}
+	log.Printf("Greeting: %s", r.GetResponseSomething())
+	/*r, err = c.SayHelloAgain(ctx, &pb.HelloRequest{Name: name})
+	if err != nil {
+			log.Fatalf("could not greet: %v", err)
+	}
+	log.Printf("Greeting: %s", r.GetMessage())*/
 }
