@@ -1,0 +1,16 @@
+//指定语法
+syntax = "proto3";
+//关于最后生成的go文件是处在哪个目录哪个包中
+option go_package = "github.com/husterdjx/PS-intership-devops/code/grpc/proto";
+//定义了一个service，称为MessageSender，这个服务中有一个rpc方法，名为Send。这个方法会发送一个MessageRequest，然后返回一个MessageResponse
+service MessageSender {
+    rpc Send(MessageRequest) returns (MessageResponse) {}
+}
+
+message MessageResponse {
+    string responseSomething = 1; //定义这个变量在这个message中的位置
+}
+
+message MessageRequest {
+    string saySomething = 1;
+}
