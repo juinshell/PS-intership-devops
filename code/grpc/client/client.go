@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"log"
-	"net"
 	"os"
 	"time"
 
@@ -32,7 +31,7 @@ func main() {
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	r, err := c.Send(ctx, &pb.MessageRequest{saySomething: name})
+	r, err := c.Send(ctx, &pb.MessageRequest{SaySomething: name})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}
