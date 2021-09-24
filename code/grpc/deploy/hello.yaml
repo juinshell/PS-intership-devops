@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-grpc
+  namespace: exp
+  labels:
+    app: hello-grpc
+spec:
+  selector:
+    matchLabels:
+      app: hello-grpc
+  template:
+    metadata:
+      labels:
+        app: hello-grpc
+    spec:
+      containers:
+      - name: husterdjx
+        image: registry.cn-beijing.aliyuncs.com/husterdjx/husterdjx:latest
+        ports:
+        - containerPort: 50051
+          name: http
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 100m
+            memory: 256Mi
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-grpc
+  namespace: exp
+  labels:
+    app: hello-grpc
+spec:
+  selector:
+    app: hello-grpc
+  type: ClusterIP
+  ports:
+    - name: web
+      port: 50051
+      targetPort: http
