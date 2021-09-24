@@ -15,17 +15,17 @@ spec:
     spec:
       containers:
       - name: husterdjx
-        image: registry.cn-beijing.aliyuncs.com/husterdjx/husterdjx:{{.build_tag}}
+        image: registry.cn-beijing.aliyuncs.com/husterdjx/husterdjx:latest
         ports:
         - containerPort: 50052
           name: http
         resources:
           requests:
-            cpu: 100m
-            memory: 256Mi
+            cpu: 50m
+            memory: 50Mi
           limits:
-            cpu: 100m
-            memory: 256Mi
+            cpu: 50m
+            memory: 50Mi
 ---
 apiVersion: v1
 kind: Service
