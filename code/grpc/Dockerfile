@@ -1,6 +1,6 @@
 #build stage
 FROM golang:alpine AS builder
-RUN sed -i -e 's/http:/https:/' /etc/apk/repositories
+RUN set -eux && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 RUN apk -U --no-cache add git
 WORKDIR /go/src/app
 COPY . .
