@@ -27,5 +27,5 @@ func main() {
 			"news":news, 
 		})
 	})
-	r.Run()
+	r.Run(":50052")
 }
