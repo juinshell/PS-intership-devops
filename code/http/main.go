@@ -11,7 +11,7 @@ type Article struct{
 }
 func main() {
 	r := gin.Default()
-	r.LoadHTMLGlob("/go/src/app/templates/*")
+	r.LoadHTMLGlob("app/templates/*")
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK,"index.html",gin.H{
 			"title":"首页",
