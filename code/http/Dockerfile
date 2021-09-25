@@ -10,6 +10,6 @@ RUN go build -o /go/bin/app -v main.go
 FROM alpine:latest
 RUN apk --no-cache add ca-certificates
 COPY --from=builder /go/bin/app /app
-COPY --from=builder /go/bin/app/templates /app/templates
+COPY --from=builder /go/src/app/templates /templates
 WORKDIR /
 ENTRYPOINT /app
