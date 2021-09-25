@@ -42,6 +42,7 @@ HTTP 既可以和 RPC 一样作为服务间通信的解决方案，也可以作�
 ![](rpc.jpg)
 rpc的原理\
 ![](rpc2.png)
+* grpc不能通过浏览器访问
 # gRPC
 ## 调用模型
 ![](grpc-step.png)
