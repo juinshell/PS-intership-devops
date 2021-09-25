@@ -10,6 +10,7 @@ type Article struct{
 
 }
 func main() {
+	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 	r.LoadHTMLGlob("app/templates/*")
 	r.GET("/", func(c *gin.Context) {
