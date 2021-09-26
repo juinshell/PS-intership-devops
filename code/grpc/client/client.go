@@ -11,7 +11,7 @@ import (
 	"google.golang.org/grpc"
 )
 const (
-	address     = "localhost:50052"
+	address     = "localhost:50053"
 	defaultName = "world"
 )
 

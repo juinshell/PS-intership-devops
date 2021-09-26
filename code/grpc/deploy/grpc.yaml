@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-http
+  name: hello-grpc
   labels:
-    app: hello-http
+    app: hello-grpc
 spec:
   selector:
     matchLabels:
-      app: hello-http
+      app: hello-grpc
   template:
     metadata:
       labels:
-        app: hello-http
+        app: hello-grpc
     spec:
       containers:
-      - name: hello-http
-        image: registry.cn-beijing.aliyuncs.com/husterdjx/husterdjx:latest
+      - name: hello-grpc
+        image: registry.cn-beijing.aliyuncs.com/husterdjx/husterdjx:grpc-latest
         ports:
-        - containerPort: 50052
+        - containerPort: 50053
           name: http
         resources:
           requests:
