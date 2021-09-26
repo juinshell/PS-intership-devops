@@ -26,18 +26,3 @@ spec:
           limits:
             cpu: 50m
             memory: 50Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: hello-grpc
-  labels:
-    app: hello-grpc
-spec:
-  selector:
-    app: hello-grpc
-  type: ClusterIP
-  ports:
-    - name: web
-      port: 50052
-      targetPort: http
