@@ -3,6 +3,7 @@
 每个pod都有各自的ip。Pod 是非永久性资源。
 Deployment 中，在同一时刻运行的 Pod 集合可能与稍后运行该应用程序的 Pod 集合不同。
 ## 创建和查看Service
+有选择算符，直接访问pod
 ```yaml
 apiVersion: v1
 kind: Service
@@ -17,6 +18,10 @@ spec:
       targetPort: 9376
 ```
 ![](service1.png)
+* 当每个 Service 创建时，会被分配一个**唯一的 IP 地址（也称为 clusterIP）**。 这个 IP 地址与一个 Service 的生命周期绑定在一起，当 Service 存在的时候它也不会改变。 可以配置 Pod 使它与 Service 进行通信，Pod 知道与 Service 通信将被自动地负载均衡到该 Service 中的某些 Pod 上。
+* targetPort：容器接收流量的端口；
+* port：抽象的 Service 端口，可以使任何其它 Pod 访问该 Service 的端口
+* Service 能够将一个接收 port 映射到任意的 targetPort。 默认情况下，targetPort 将被设置为与 port 字段相同的值。
 # Deployment（Pod模板之一）
 ## 动机
 描述 Deployment 中的 目标状态，而 Deployment 控制器（Controller） 以受控速率更改实际状态， 使其变为期望状态。
@@ -34,3 +39,6 @@ kubectl rollout status deployment
 ```
 kubectl describe deployments
 ```
+# Pod
+## 通信
+在同一个 Pod 内，所有容器共享一个 IP 地址和端口空间，并且可以通过 localhost 发现对方。
