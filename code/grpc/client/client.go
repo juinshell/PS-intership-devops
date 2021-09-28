@@ -11,7 +11,7 @@ import (
 	"google.golang.org/grpc"
 )
 const (
-	address     = "localhost:8080"//在put-forward上的本机端口
+	address     = "hello-grpc-service:80"//在put-forward上的本机端口
 	defaultName = "world"
 )
 
