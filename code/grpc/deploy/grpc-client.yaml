@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-grpc
+  name: hello-grpc-client
   labels:
-    app: hello-grpc
+    app: hello-grpc-client
 spec:
   selector:
     matchLabels:
-      app: hello-grpc
+      app: hello-grpc-client
   template:
     metadata:
       labels:
-        app: hello-grpc
+        app: hello-grpc-client
     spec:
       containers:
-      - name: hello-grpc
+      - name: hello-grpc-client
         image: registry.cn-beijing.aliyuncs.com/husterdjx/husterdjx:grpc-client
         ports:
         - containerPort: 50060
