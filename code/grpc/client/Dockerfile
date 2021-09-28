@@ -4,7 +4,7 @@ RUN set -eux && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk
 RUN apk -U --no-cache add git
 WORKDIR /go/src/app
 COPY . .
-RUN go build -o /go/bin/app -v client.go
+RUN go build -o /go/bin/app -v ./client.go
 
 #final stage
 FROM alpine:latest
