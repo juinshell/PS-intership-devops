@@ -26,3 +26,15 @@ spec:
           limits:
             cpu: 50m
             memory: 50Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-grpc-client-service
+spec:
+  selector:
+    app: hello-grpc-client
+  ports:
+    - protocol: TCP
+      port: 50070
+      targetPort: 50060

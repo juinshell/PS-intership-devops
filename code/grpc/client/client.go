@@ -13,7 +13,7 @@ import (
 )
 const (
 	defaultName = "world"
-	address     = "hello-grpc-service:80"
+	address     = "hello-grpc-server-service:80"
 )
 var sig = 0
 var mu sync.Mutex
