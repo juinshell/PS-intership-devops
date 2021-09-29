@@ -25,7 +25,7 @@ func echo(wr http.ResponseWriter, r *http.Request) {
 func main() {
 	go func(){
 		http.HandleFunc("/", echo)
-		err := http.ListenAndServe(":1314", nil)
+		err := http.ListenAndServe(":50060", nil)
 		if err != nil {
 			log.Fatal(err)
 		}
