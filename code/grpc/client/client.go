@@ -19,15 +19,15 @@ const (
 
 func echo(wr http.ResponseWriter, r *http.Request) {
 	// Set up a connection to the server.
-	log.Println("get into echo")
+	//log.Println("get into echo")
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
-	log.Println("Dial finished!")
+	//log.Println("Dial finished!")
 	defer conn.Close()
 	c := pb.NewMessageSenderClient(conn)
-	log.Println("new client finished!")
+	//log.Println("new client finished!")
 	// Contact the server and print out its response.
 	name := defaultName
 	if len(os.Args) > 1 {
@@ -35,7 +35,7 @@ func echo(wr http.ResponseWriter, r *http.Request) {
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	log.Println("ctx finished!")
+	//log.Println("ctx finished!")
 	rr, err := c.Send(ctx, &pb.MessageRequest{SaySomething: name})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
@@ -43,10 +43,10 @@ func echo(wr http.ResponseWriter, r *http.Request) {
 	log.Printf("Greeting: %s", rr.GetResponseSomething())
 }	
 func main() {
-	log.Println("Begin")
+	//log.Println("Begin")
 	http.HandleFunc("/", echo)
 	err := http.ListenAndServe("localhost:50060", nil)
-	log.Println("err!!")
+	//log.Println("err!!")
 	if err != nil {
 		log.Fatal(err)
 	}	

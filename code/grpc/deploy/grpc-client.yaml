@@ -16,6 +16,7 @@ spec:
       containers:
       - name: hello-grpc-client
         image: registry.cn-beijing.aliyuncs.com/husterdjx/husterdjx:grpc-client
+        imagePullPolicy: Always
         ports:
         - containerPort: 50060
           name: http
