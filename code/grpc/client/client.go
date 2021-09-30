@@ -43,6 +43,7 @@ func echo(wr http.ResponseWriter, r *http.Request) {
 	log.Printf("Greeting: %s", rr.GetResponseSomething())
 }	
 func main() {
+	log.Println("Begin")
 	http.HandleFunc("/", echo)
 	err := http.ListenAndServe(":50060", nil)
 	log.Println("err!!")
