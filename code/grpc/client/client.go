@@ -45,7 +45,7 @@ func echo(wr http.ResponseWriter, r *http.Request) {
 func main() {
 	log.Println("Begin")
 	http.HandleFunc("/", echo)
-	err := http.ListenAndServe(":50060", nil)
+	err := http.ListenAndServe("localhost:50060", nil)
 	log.Println("err!!")
 	if err != nil {
 		log.Fatal(err)
