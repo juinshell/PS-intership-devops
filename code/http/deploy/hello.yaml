@@ -16,6 +16,7 @@ spec:
       containers:
       - name: hello-http
         image: registry.cn-beijing.aliyuncs.com/husterdjx/husterdjx:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 50052
           name: http
@@ -37,4 +38,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: http
+      targetPort: 50052
