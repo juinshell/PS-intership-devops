@@ -19,7 +19,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 50052
-          name: http
         resources:
           requests:
             cpu: 50m
