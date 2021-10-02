@@ -37,8 +37,10 @@ kubectl rollout status deployment
 部署还确保仅创建超过所需数量的 Pod 的特定数量的 Pod。默认情况下，它确保最多 125% 的所需 Pod 数量增加（最大激增 25%）。
 ## 获取部署的详细信息
 ```
-kubectl describe deployments
+kubectl describe deployments xxx
 ```
 # Pod
 ## 通信
 在同一个 Pod 内，所有容器共享一个 IP 地址和端口空间，并且可以通过 localhost 发现对方。
+# 端口转发
+只能转发pod的端口(包括pod模板)，对于Service是针对于内部互访(可用域名访问)

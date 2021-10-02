@@ -30,6 +30,8 @@ spec:
 * apiVersion - 创建该对象所使用的 Kubernetes API 的版本
 * kind - 想要创建的对象的类别
 * metadata - 帮助唯一性标识对象的一些数据，包括一个 name 字符串、UID 和可选的 namespace
+## 其他字段
+* .spec.selector 字段是一个标签选择算符。这些是用来标识要被获取的 Pods 的标签。
 ## Deployment
 ```yaml
 apiVersion: apps/v1
@@ -66,4 +68,3 @@ spec:
 https://www.qikqiak.com/k8s-book/docs/18.YAML%20%E6%96%87%E4%BB%B6.html
 * targetport:要代理的集群内的pod端口（可以用）
 * port：集群内其他部分访问service时的目标端口
-* 
