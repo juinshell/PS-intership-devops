@@ -6,7 +6,7 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
-	pb "grpc/proto"
+	pb "PS_intership/code/grpc/proto"
 )
 
 

@@ -12,7 +12,7 @@ type Article struct{
 func main() {
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
-	r.LoadHTMLGlob("templates/*")
+	r.LoadHTMLGlob("code/http/templates/*")
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK,"index.html",gin.H{
 			"title":"首页",

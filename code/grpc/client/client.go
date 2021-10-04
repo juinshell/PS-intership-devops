@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	pb "grpc/proto"
+	pb "PS_intership/code/grpc/proto"
 	"os"
 	"time"
 
