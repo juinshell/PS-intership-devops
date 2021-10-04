@@ -24,6 +24,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           file: code/http/Dockerfile
+          context: ./code/http
           push: true
           tags: registry.cn-beijing.aliyuncs.com/husterdjx/husterdjx:latest
       - name: Image digest
