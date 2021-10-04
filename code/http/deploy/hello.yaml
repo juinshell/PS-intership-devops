@@ -27,3 +27,15 @@ spec:
           limits:
             cpu: 50m
             memory: 50Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-http
+spec:
+  selector:
+    app: hello-http
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 50052
