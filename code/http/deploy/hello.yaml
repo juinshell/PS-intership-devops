@@ -20,6 +20,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 50052
+          name: http
         resources:
           requests:
             cpu: 50m
@@ -36,6 +37,6 @@ spec:
   selector:
     app: hello-http
   ports:
-    - protocol: TCP
-      port: 80
+    - port: 6666
       targetPort: 50052
+      name: hello-http

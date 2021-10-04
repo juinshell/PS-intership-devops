@@ -28,5 +28,5 @@ func main() {
 			"news":news, 
 		})
 	})
-	r.Run("localhost:50052")
+	r.Run(":50052")
 }
