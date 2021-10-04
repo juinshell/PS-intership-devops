@@ -19,7 +19,7 @@ jobs:
         # 登录阿里云镜像仓库
         docker login --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }} registry.cn-beijing.aliyuncs.com
         # 使用Dockerfile构建镜像
-        docker build . -f code/http/Dockerfile --tag registry.cn-beijing.aliyuncs.com/husterdjx/husterdjx:latest
+        docker build . -f Dockerfile --tag registry.cn-beijing.aliyuncs.com/husterdjx/husterdjx:latest
         # 推送镜像到镜像仓库
         docker push registry.cn-beijing.aliyuncs.com/husterdjx/husterdjx:latest
       working-directory: code/http
