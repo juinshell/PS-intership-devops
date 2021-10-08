@@ -32,6 +32,7 @@ spec:
 * metadata - 帮助唯一性标识对象的一些数据，包括一个 name 字符串、UID 和可选的 namespace
 ## 其他字段
 * .spec.selector 字段是一个标签选择算符。这些是用来标识要被获取的 Pods 的标签。
+* k8s里面的spec.containers.args就相当于dockerfile里面的cmd。常见用法就是entrypoint加cmd  cmd用来作为entrypoint的启动参数
 ## Deployment
 ```yaml
 apiVersion: apps/v1
