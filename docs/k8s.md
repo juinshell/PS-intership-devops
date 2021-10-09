@@ -180,6 +180,7 @@ spec:
 
 https://hub.docker.com/layers/busybox/library/busybox/latest/images/sha256-c71cb4f7e8ececaffb34037c2637dc86820e4185100e18b4d02d613a9bd772af?context=explore
 这是busybox的Dockerfile，根据CMD、ENTRYPOINT和args之间的关系看。
+
 * 利用http配置存活探针
 ```yaml
 apiVersion: v1
@@ -211,5 +212,5 @@ https://hub.docker.com/layers/cnych/liveness/latest/images/sha256-73a01b0be66ce7
 
 如果你需要保证的你应用优先级很高，也就是资源吃紧的情况下最后再杀掉你的 Pod，那么你就把你的 requests 和 limits 的值设置成一致
 # 端口转发
-只能转发pod的端口(包括pod模板)，对于Service是针对于内部互访(可用域名访问)
+可以转发pod的端口(包括pod模板Deploymen)，和service
 
