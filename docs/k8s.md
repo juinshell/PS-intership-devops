@@ -3,7 +3,7 @@ Service 是应用服务的抽象，通过 Labels 为应用提供**负载均衡�
 ## 现状
 每个pod都有各自的ip。Pod 是非永久性资源。
 Deployment 中，在同一时刻运行的 Pod 集合可能与稍后运行该应用程序的 Pod 集合不同。
-## 创建和查看Service
+## CluserIP
 有选择算符，直接访问pod
 ```yaml
 apiVersion: v1
@@ -19,10 +19,30 @@ spec:
       targetPort: 9376
 ```
 ![](service1.png)
+## Nodeport
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: NodePort
+  selector:
+    app: MyApp
+  ports:
+      # 默认情况下，为了方便起见，`targetPort` 被设置为与 `port` 字段相同的值。
+    - port: 80
+      targetPort: 80
+      # 可选字段
+      # 默认情况下，为了方便起见，Kubernetes 控制平面会从某个范围内分配一个端口号（默认：30000-32767）
+      nodePort: 30007
+```
 * 每个 Service 都会自动分配一个 cluster IP（仅在集群内部可访问的虚拟地址）和 DNS 名，其他容器可以通过该地址或 DNS 来访问服务。这个 IP 地址与一个 Service 的生命周期绑定在一起，当 Service 存在的时候它也不会改变。
 * targetPort：绑定的对应容器接收流量的端口；
 * port：抽象的 Service 端口，可以使任何其它 Pod 访问该 Service 的端口（即在集群内访问）
 * ClusterIP类型的Service仅能在集群内访问
+* Service 能够通过 <NodeIP>:spec.ports[*].nodePort 和 spec.clusterIp:spec.ports[*].port 而对外可见
+* 每创建一个 Service，kube-proxy 就会从 API Server 获取 Services 和 Endpoints 的配置信息，然后根据其配置信息在 Node 上启动一个 Proxy 的进程并监听相应的服务端口。
 # Deployment（Pod模板之一）
 ## 动机
 描述 Deployment 中的 目标状态，而 Deployment 控制器（Controller） 以受控速率更改实际状态， 使其变为期望状态。（包括状态属性和pod数量）
